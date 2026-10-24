@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{font-family:'DM Sans',sans-serif;color:#eaf0ef;background:#0b1015;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;--bg:#0b1015;--panel:rgba(19,27,34,.92);--panel-soft:#10171d;--line:rgba(219,230,224,.1);--muted:#89959a;--lime:#c5db78;--mint:#8bc9aa;--blue:#8cbce1;--purple:#c69ae3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;min-width:320px;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 19% 13%,rgba(33,76,79,.2),transparent 38%),radial-gradient(ellipse at 92% 38%,rgba(73,56,105,.14),transparent 37%),var(--bg)}
+button,input{font:inherit}
+button{cursor:pointer}
+code,pre{font-family:'DM Mono',monospace}
+.ambient{position:fixed;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(90px);opacity:.13}.ambient-a{width:300px;height:300px;background:#528d86;left:-160px;top:240px}.ambient-b{width:340px;height:340px;background:#66508a;right:-190px;top:940px}
+.app-shell{width:min(1120px,calc(100% - 56px));margin:0 auto}
+.topbar{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:11px;align-items:center;color:#e7eeeb;text-decoration:none}.brand-icon{position:relative;width:36px;height:36px;display:grid;place-items:center;border:1px solid rgba(197,219,120,.3);border-radius:11px;background:rgba(197,219,120,.1);color:var(--lime);font:700 21px 'Manrope',sans-serif}.brand-icon span{position:absolute;right:2px;top:2px;font:600 9px 'DM Mono',monospace}.brand>span:last-child{display:grid;gap:3px}.brand strong{font:700 15px 'Manrope',sans-serif;letter-spacing:-.5px}.brand-slash,.footer-brand span{color:var(--lime)}.brand small{color:#7b878b;font:500 8px 'DM Mono',monospace;letter-spacing:1.2px}
+.top-nav{display:flex;align-items:center;gap:27px}.top-nav a{color:#9ca8aa;text-decoration:none;font-size:11px;transition:color .18s}.top-nav a:hover{color:#eaf0ef}.top-nav .github-link{padding:9px 12px;border:1px solid var(--line);border-radius:8px;color:#d4dedd}.github-link span{margin-left:7px;color:var(--lime)}
+main{padding-bottom:22px}

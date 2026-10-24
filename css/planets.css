@@ -1,0 +1,209 @@
+/* Atlas de mundos: catálogo, filtros y fichas */
+.planet-filters {
+  display:grid;
+  grid-template-columns:minmax(220px,1fr) minmax(190px,.62fr) auto;
+  align-items:end;
+  gap:12px;
+  margin:7px 0 18px;
+  padding:16px;
+  border:1px solid rgba(91,169,223,.3);
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(11,39,66,.92),rgba(8,23,38,.95));
+  box-shadow:0 14px 34px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.035);
+}
+.planet-search,.planet-state-filter { min-width:0; display:grid; gap:7px; }
+.planet-search>span,.planet-state-filter>span {
+  color:#bdd0dc;
+  font-size:10px;
+  letter-spacing:.85px;
+}
+.planet-search>div,.planet-state-filter select {
+  height:42px;
+  border:1px solid rgba(135,190,226,.25);
+  border-radius:8px;
+  background:#071a2b;
+  color:#eff7ff;
+}
+.planet-search>div { display:flex; align-items:center; gap:9px; padding:0 11px; }
+.planet-search>div:focus-within,.planet-state-filter select:focus {
+  outline:0;
+  border-color:#ffc64a;
+  box-shadow:0 0 0 3px rgba(255,190,58,.11),0 0 18px rgba(255,190,58,.08);
+}
+.planet-search svg { flex:none; width:16px; color:#ffc64a; }
+.planet-search input { width:100%; min-width:0; border:0; outline:0; background:transparent; color:#eff7ff; font:inherit; font-size:13px; }
+.planet-search input::placeholder { color:#849eb0; }
+.planet-state-filter select { width:100%; padding:0 10px; font:inherit; font-size:12px; }
+.planet-search-submit {
+  min-height:42px;
+  padding:0 16px;
+  border:1px solid rgba(255,218,112,.62);
+  border-radius:8px;
+  background:linear-gradient(115deg,#ffda59,#ff9d1e 74%,#ee6b19);
+  color:#321b05;
+  font:700 12px 'DM Sans',sans-serif;
+  box-shadow:0 8px 18px rgba(230,119,21,.18);
+  cursor:pointer;
+  transition:transform .2s,filter .2s,box-shadow .2s;
+}
+.planet-search-submit span { margin-left:8px; }
+.planet-search-submit:hover { transform:translateY(-2px); filter:brightness(1.08); box-shadow:0 12px 25px rgba(230,119,21,.25); }
+.planet-toolbar {
+  min-height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+  padding:0 13px;
+  border:1px solid rgba(112,179,225,.19);
+  border-radius:10px;
+  background:linear-gradient(90deg,rgba(11,40,65,.8),rgba(7,24,40,.85));
+}
+.planet-toolbar>div { min-width:0; display:grid; gap:4px; }
+.planet-toolbar strong { color:#f1f7fa; font:600 12px 'DM Mono',monospace; letter-spacing:.5px; }
+.planet-toolbar>div>span,.planet-toolbar>span { color:#a8bdc9; font:10px 'DM Mono',monospace; }
+.planet-toolbar>div>span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.planet-content { min-height:260px; }
+.planet-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.planet-card {
+  min-width:0;
+  overflow:hidden;
+  border:1px solid rgba(102,173,220,.23);
+  border-radius:13px;
+  background:linear-gradient(155deg,rgba(13,42,68,.98),rgba(7,20,34,.98));
+  box-shadow:0 8px 18px rgba(0,0,0,.17);
+  transition:transform .24s,border-color .24s,box-shadow .24s;
+}
+.planet-card:hover { transform:translateY(-5px); border-color:rgba(255,197,69,.7); box-shadow:0 16px 30px rgba(0,0,0,.3),0 0 23px rgba(252,162,37,.12); }
+.planet-card-button {
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.planet-portrait { width:100%; height:190px; border:0; border-radius:0; background:radial-gradient(ellipse at 50% 40%,rgba(63,158,227,.34),transparent 66%),linear-gradient(180deg,#123b61,#0a1c2d); }
+.planet-portrait img { object-fit:cover; filter:saturate(1.08) drop-shadow(0 8px 11px rgba(0,0,0,.45)); transition:transform .5s; }
+.planet-card:hover .planet-portrait img { transform:scale(1.055); }
+.planet-status-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  width:max-content;
+  max-width:100%;
+  padding:6px 9px;
+  border:1px solid rgba(255,204,85,.28);
+  border-radius:999px;
+  background:rgba(8,20,31,.84);
+  color:#ffe08a;
+  font:600 9px 'DM Mono',monospace;
+  letter-spacing:.2px;
+}
+.planet-status-badge.is-destroyed { border-color:rgba(255,114,79,.4); background:rgba(80,24,24,.76); color:#ff9b7e; }
+.planet-status-badge.is-safe { border-color:rgba(117,218,183,.32); color:#8de6c3; }
+.planet-card .planet-status-badge { position:absolute; top:11px; left:11px; }
+.planet-card-info { min-width:0; display:grid; gap:8px; padding:13px 14px 15px; }
+.planet-card-info>strong { color:#f5f8f5; font:700 17px 'Manrope',sans-serif; }
+.planet-card-info>span { display:-webkit-box; min-height:54px; overflow:hidden; color:#b2c4ce; font-size:11px; line-height:1.6; -webkit-box-orient:vertical; -webkit-line-clamp:3; }
+.planet-card-info>i { display:flex; justify-content:space-between; align-items:center; margin-top:2px; color:#ffca58; font-size:10px; font-style:normal; font-weight:700; }
+.planet-card-info>i b { font-size:14px; font-weight:500; }
+.planet-empty,.planet-empty-inhabitants {
+  grid-column:1/-1;
+  display:grid;
+  justify-items:center;
+  gap:9px;
+  padding:46px 20px;
+  border:1px dashed rgba(117,184,225,.24);
+  border-radius:13px;
+  background:rgba(8,28,46,.6);
+  color:#aec3d1;
+  text-align:center;
+}
+.planet-empty>span,.planet-empty-inhabitants>span { color:#ffc64a; font-size:24px; }
+.planet-empty strong,.planet-empty-inhabitants strong { color:#f4f8f8; font-size:15px; }
+.planet-empty p,.planet-empty-inhabitants p { max-width:440px; margin:0; color:#9bb0bd; font-size:12px; line-height:1.65; }
+.planet-empty.is-error>span { color:#ff9478; }
+.planet-detail-card {
+  grid-column:1/-1;
+  padding:17px;
+  border:1px solid rgba(255,190,62,.2);
+  border-radius:15px;
+  background:radial-gradient(ellipse at 8% 0%,rgba(37,117,181,.14),transparent 42%),linear-gradient(140deg,rgba(11,34,55,.94),rgba(7,19,31,.98));
+  box-shadow:0 15px 38px rgba(0,0,0,.22);
+  animation:planet-arrive .45s cubic-bezier(.2,.7,.2,1) both;
+}
+.planet-detail-card .back-button { display:inline-flex; align-items:center; gap:7px; margin-bottom:16px; padding:7px 0; border:0; background:none; color:#ffd16a; font:600 11px 'DM Sans',sans-serif; cursor:pointer; }
+.planet-detail-card .back-button:hover { color:#fff1b7; }
+.planet-detail-hero { display:grid; grid-template-columns:minmax(250px,.9fr) 1.1fr; gap:22px; align-items:center; }
+.planet-detail-portrait { width:100%; height:300px; border-color:rgba(255,195,71,.2); border-radius:12px; background:radial-gradient(ellipse at 50% 42%,rgba(63,158,227,.38),transparent 66%),linear-gradient(180deg,#123b61,#071a2c); }
+.planet-detail-portrait img { object-fit:cover; filter:saturate(1.1) drop-shadow(0 12px 18px rgba(0,0,0,.48)); }
+.planet-detail-copy { min-width:0; }
+.planet-detail-copy h2 { margin:12px 0 8px; color:#fff8e9; font:700 clamp(27px,3vw,42px)/1.05 'Manrope',sans-serif; letter-spacing:-1px; }
+.planet-detail-copy>p { margin:0; color:#bdcbd2; font-size:13px; line-height:1.75; }
+.planet-detail-facts { display:flex; flex-wrap:wrap; gap:8px; margin-top:17px; }
+.planet-detail-facts>span { display:inline-flex; align-items:center; gap:6px; padding:8px 10px; border:1px solid rgba(107,177,224,.2); border-radius:7px; background:rgba(7,24,40,.6); color:#b7ccda; font-size:10px; }
+.planet-detail-facts i { color:#ffc64a; font-style:normal; }
+.planet-inhabitants-heading { display:flex; align-items:end; justify-content:space-between; gap:14px; margin:25px 0 12px; padding-bottom:11px; border-bottom:1px solid rgba(112,179,225,.18); }
+.planet-inhabitants-heading>div>span { color:#ffc854; font:600 8px 'DM Mono',monospace; letter-spacing:1px; }
+.planet-inhabitants-heading h3 { margin:5px 0 0; color:#f4f8f8; font:700 19px 'Manrope',sans-serif; }
+.planet-inhabitants-heading>b { color:#ffc64a; font:600 12px 'DM Mono',monospace; }
+.planet-inhabitants { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+.planet-inhabitant { min-width:0; display:grid; grid-template-columns:57px minmax(0,1fr) 16px; align-items:center; gap:10px; padding:8px; border:1px solid rgba(102,173,220,.2); border-radius:10px; background:linear-gradient(120deg,rgba(11,41,66,.78),rgba(8,22,37,.92)); color:inherit; text-align:left; cursor:pointer; transition:transform .2s,border-color .2s,background .2s; }
+.planet-inhabitant:hover { transform:translateY(-2px); border-color:rgba(255,197,69,.53); background:linear-gradient(120deg,rgba(21,61,91,.88),rgba(8,22,37,.96)); }
+.inhabitant-portrait { width:57px; height:64px; border:0; border-radius:7px; background:radial-gradient(ellipse at 50% 35%,rgba(63,158,227,.3),transparent 65%),#0b2135; }
+.planet-inhabitant>span:nth-child(2) { min-width:0; display:grid; gap:4px; }
+.planet-inhabitant strong { overflow:hidden; color:#eff7fa; font-size:11px; text-overflow:ellipsis; white-space:nowrap; }
+.planet-inhabitant small { color:#a9c0cf; font-size:9px; }
+.planet-inhabitant>i { color:#ffc64a; font-style:normal; }
+.planet-empty-inhabitants { padding:24px 16px; }
+.planet-pagination { margin-top:13px; }
+@keyframes planet-arrive { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+@media(max-width:1000px) {
+  .planet-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .planet-inhabitants { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:620px) {
+  .planet-filters { grid-template-columns:1fr 1fr; gap:10px; padding:12px; }
+  .planet-search { grid-column:1/-1; }
+  .planet-search-submit { min-height:40px; padding:0 10px; font-size:10px; }
+  .planet-toolbar { min-height:48px; gap:7px; padding:0 9px; }
+  .planet-toolbar strong { font-size:8px; }
+  .planet-toolbar>div>span,.planet-toolbar>span { font-size:7px; }
+  .planet-grid { gap:8px; }
+  .planet-portrait { height:150px; }
+  .planet-card .planet-status-badge { top:7px; left:7px; padding:5px 6px; font-size:7px; }
+  .planet-card-info { gap:6px; padding:9px; }
+  .planet-card-info>strong { font-size:12px; }
+  .planet-card-info>span { min-height:44px; font-size:9px; }
+  .planet-card-info>i { font-size:8px; }
+  .planet-detail-card { padding:11px; }
+  .planet-detail-hero { grid-template-columns:1fr; gap:14px; }
+  .planet-detail-portrait { height:220px; }
+  .planet-detail-copy h2 { font-size:28px; }
+  .planet-detail-copy>p { font-size:11px; }
+  .planet-detail-facts { margin-top:11px; }
+  .planet-detail-facts>span { font-size:8px; }
+  .planet-inhabitants-heading { margin-top:20px; }
+  .planet-inhabitants-heading h3 { font-size:15px; }
+  .planet-inhabitants { grid-template-columns:1fr; }
+  .planet-inhabitant { grid-template-columns:50px minmax(0,1fr) 16px; }
+  .inhabitant-portrait { width:50px; height:55px; }
+}
+@media(max-width:380px) {
+  .planet-filters { grid-template-columns:1fr; }
+  .planet-search { grid-column:auto; }
+  .planet-search-submit { width:100%; }
+  .planet-grid { grid-template-columns:1fr; }
+  .planet-portrait { height:190px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .planet-card,.planet-inhabitant,.planet-detail-card,.planet-search-submit { animation:none!important; transition:none!important; }
+}

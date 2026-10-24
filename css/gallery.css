@@ -1,0 +1,19 @@
+/* Galería de retratos */
+.gallery-toolbar {
+  min-height:54px;
+  margin:0 0 5px;
+  padding:0 13px;
+  border:1px solid rgba(99,174,223,.2);
+  border-radius:10px;
+  background:linear-gradient(90deg,rgba(12,43,70,.82),rgba(8,24,39,.9));
+  color:#bbcad2;
+  font-size:12px;
+}
+.gallery-grid { gap:17px; }
+.gallery-card { border-color:rgba(93,173,229,.27); border-radius:14px; }
+.gallery-card:hover { border-color:rgba(255,195,66,.72); }
+.gallery-portrait { background:radial-gradient(ellipse at 50% 72%,rgba(255,159,44,.35),transparent 52%),linear-gradient(180deg,#14528a,#091b2c 84%); }
+.gallery-caption { background:linear-gradient(90deg,rgba(12,42,68,.96),rgba(7,22,37,.96)); }
+.gallery-caption span { color:#ffd063; font-size:10px; }
+.gallery-caption strong { color:#f6f9f8; font-size:17px; }
+.gallery-image-action { font-size:12px; }

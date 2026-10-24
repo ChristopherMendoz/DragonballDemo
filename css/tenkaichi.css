@@ -1,0 +1,225 @@
+/* Selector Tenkaichi: tira de luchadores, escenario y panel de combate. */
+.character-heading-tools { display:grid; justify-items:end; gap:11px; flex:none; }
+.character-heading-tools .view-counter { padding:0; font-size:8px; }
+.display-mode-switch {
+  display:flex;
+  gap:3px;
+  padding:3px;
+  border:1px solid rgba(107,177,224,.24);
+  border-radius:9px;
+  background:rgba(4,17,30,.82);
+  box-shadow:inset 0 1px rgba(255,255,255,.04),0 6px 18px rgba(0,0,0,.16);
+}
+.display-mode-switch button {
+  min-height:32px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:0 11px;
+  border:1px solid transparent;
+  border-radius:6px;
+  background:transparent;
+  color:#9eb3c3;
+  font:600 10px 'DM Sans',sans-serif;
+  cursor:pointer;
+  transition:background .2s,color .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.display-mode-switch button:hover { color:#fff; }
+.display-mode-switch button:focus-visible { outline:2px solid #ffca4d; outline-offset:2px; }
+.display-mode-switch button.is-active { border-color:rgba(255,198,74,.42); background:linear-gradient(120deg,rgba(255,195,62,.18),rgba(235,107,30,.12)); color:#ffda78; box-shadow:0 0 15px rgba(255,171,41,.1); }
+.display-mode-switch button:last-child.is-active { border-color:rgba(102,188,255,.43); background:linear-gradient(120deg,rgba(35,145,229,.2),rgba(255,163,43,.13)); color:#e5f5ff; box-shadow:0 0 18px rgba(40,156,255,.14),inset 0 0 12px rgba(255,179,53,.07); }
+.display-mode-switch button:last-child span { color:#ffc64a; }
+#personajes.is-tenkaichi .view-kicker { color:#ffca58; }
+#personajes.is-tenkaichi .view-heading::before { background:linear-gradient(#6ecaff,#ffda5d,#ff792d); box-shadow:0 0 18px rgba(65,174,255,.34),0 0 26px rgba(255,160,43,.17); }
+#personajes.is-tenkaichi .view-heading h1 { text-shadow:0 0 25px rgba(46,157,255,.21); }
+#personajes.is-tenkaichi .catalog-filters { border:1px solid rgba(84,166,239,.34); border-left:3px solid #ffc747; border-radius:4px; background:linear-gradient(110deg,rgba(7,35,69,.94),rgba(5,18,38,.96)); box-shadow:0 8px 20px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.04); }
+#personajes.is-tenkaichi .catalog-search>span,#personajes.is-tenkaichi .filter-control>span { color:#9dcdf1; }
+#personajes.is-tenkaichi .catalog-search>div,#personajes.is-tenkaichi .catalog-filters .filter-control select { border-color:rgba(118,194,245,.32); border-radius:3px; background:#071a33; color:#edf7ff; }
+#personajes.is-tenkaichi .catalog-search>div:focus-within,#personajes.is-tenkaichi .catalog-filters .filter-control select:focus { border-color:#ffcf56; box-shadow:0 0 0 2px rgba(255,198,74,.15); }
+#personajes.is-tenkaichi .filter-submit { border-color:#ffd768; border-radius:3px; background:linear-gradient(100deg,#ffe471,#ffad36); box-shadow:0 0 13px rgba(255,181,49,.18); }
+
+.tenkaichi-select-screen {
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:13px;
+  border:2px solid #2374ca;
+  border-radius:12px;
+  background:linear-gradient(145deg,#071b35,#040d1b 66%,#160f18);
+  box-shadow:0 18px 48px rgba(0,0,0,.42),0 0 26px rgba(35,124,215,.16),inset 0 0 0 1px rgba(255,220,102,.17);
+}
+.tenkaichi-select-screen::before { position:absolute; z-index:-1; inset:0; content:""; pointer-events:none; opacity:.28; background:radial-gradient(circle at 15% 30%,rgba(255,201,72,.65) 0 1px,transparent 2px),radial-gradient(circle at 77% 21%,rgba(113,209,255,.66) 0 1px,transparent 2px),radial-gradient(circle at 64% 83%,rgba(255,133,53,.55) 0 1px,transparent 2px),radial-gradient(circle at 34% 68%,rgba(113,209,255,.5) 0 1px,transparent 2px); }
+.tenkaichi-game-header {
+  min-height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:-1px -1px 10px;
+  padding:0 11px;
+  border:1px solid rgba(136,205,255,.58);
+  background:linear-gradient(90deg,#1249a4,#167bd1 42%,#0a2e68);
+  box-shadow:0 4px 15px rgba(18,103,207,.24),inset 0 1px rgba(255,255,255,.24);
+  color:#f5fbff;
+  font:600 9px 'DM Mono',monospace;
+  letter-spacing:.6px;
+}
+.tenkaichi-game-header span:first-child { display:flex; align-items:center; gap:8px; }
+.tenkaichi-game-header b { display:grid; width:23px; height:21px; place-items:center; border:1px solid #ffe26c; background:linear-gradient(#ffe779,#ffae32); color:#163256; font:800 10px 'Manrope',sans-serif; }
+.tenkaichi-game-header span:last-child { color:#ffe98d; text-align:right; }
+.tenkaichi-roster-panel { padding:9px 9px 8px; border:1px solid rgba(102,181,255,.35); background:linear-gradient(180deg,rgba(7,37,75,.9),rgba(4,19,39,.9)); box-shadow:inset 0 1px rgba(255,255,255,.055); }
+.tenkaichi-roster-title { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:7px; color:#a9d5fa; font:500 8px 'DM Mono',monospace; letter-spacing:.7px; }
+.tenkaichi-roster-title strong { color:#ffda70; font-weight:600; }
+.tenkaichi-roster-grid { display:flex; gap:5px; overflow-x:auto; padding:2px 2px 7px; scrollbar-color:#318de0 rgba(2,12,26,.7); scrollbar-width:thin; }
+.tenkaichi-roster-grid::-webkit-scrollbar { height:6px; }
+.tenkaichi-roster-grid::-webkit-scrollbar-track { border-radius:5px; background:rgba(2,12,26,.7); }
+.tenkaichi-roster-grid::-webkit-scrollbar-thumb { border-radius:5px; background:linear-gradient(90deg,#2476ce,#ffc947); }
+.tenkaichi-fighter {
+  position:relative;
+  flex:0 0 69px;
+  min-width:0;
+  height:77px;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding:2px;
+  overflow:hidden;
+  border:1px solid rgba(139,195,243,.43);
+  border-radius:3px;
+  background:linear-gradient(150deg,#1d5e9f,#0b2448 70%,#101a31);
+  color:#eef7ff;
+  cursor:pointer;
+  transition:transform .16s,border-color .16s,box-shadow .16s,filter .16s;
+}
+.tenkaichi-fighter:hover,.tenkaichi-fighter:focus-visible { z-index:1; transform:translateY(-2px); border-color:#ffe36c; box-shadow:0 0 0 1px rgba(255,220,91,.55),0 0 15px rgba(72,177,255,.52); filter:brightness(1.12); }
+.tenkaichi-fighter:focus-visible { outline:2px solid #fff2a1; outline-offset:2px; }
+.tenkaichi-fighter.is-selected { border:2px solid #ffe16a; box-shadow:0 0 0 1px #e28a2e,0 0 17px rgba(255,196,63,.56); }
+.tenkaichi-portrait { width:100%; height:53px; border:0; border-radius:0; background:radial-gradient(ellipse at 50% 78%,rgba(255,178,53,.25),transparent 48%),linear-gradient(180deg,#0d4e89,#07152d); }
+.tenkaichi-portrait img { object-fit:contain; object-position:center bottom; filter:drop-shadow(0 3px 4px rgba(0,0,0,.58)); transition:transform .18s,filter .18s; }
+.tenkaichi-fighter:hover .tenkaichi-portrait img,.tenkaichi-fighter:focus-visible .tenkaichi-portrait img,.tenkaichi-fighter.is-selected .tenkaichi-portrait img { transform:scale(1.06); filter:drop-shadow(0 0 6px rgba(255,222,101,.58)); }
+.tenkaichi-roster-lock { position:absolute; top:3px; right:4px; z-index:2; color:#ffe06a; font-size:9px; opacity:0; transform:scale(.7); transition:opacity .16s,transform .16s; }
+.tenkaichi-fighter.is-selected .tenkaichi-roster-lock,.tenkaichi-fighter:hover .tenkaichi-roster-lock,.tenkaichi-fighter:focus-visible .tenkaichi-roster-lock { opacity:1; transform:scale(1); }
+.tenkaichi-roster-name { display:block; overflow:hidden; padding:3px 2px 2px; border-top:1px solid rgba(157,204,255,.18); color:#dceeff; font:600 7px 'DM Sans',sans-serif; text-align:center; text-overflow:ellipsis; white-space:nowrap; }
+
+.tenkaichi-selection-stage { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.82fr); gap:9px; margin-top:9px; }
+.tenkaichi-visual-panel {
+  position:relative;
+  min-width:0;
+  min-height:405px;
+  overflow:hidden;
+  border:2px solid rgba(99,184,255,.68);
+  background:radial-gradient(ellipse at 48% 30%,rgba(60,165,233,.72),transparent 49%),linear-gradient(145deg,#58a7d7 0%,#3276ad 35%,#0a2b58 76%,#07162d 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,231,148,.22),0 0 22px rgba(38,137,219,.24);
+}
+.tenkaichi-visual-panel::before { position:absolute; z-index:0; inset:0; content:""; pointer-events:none; background:linear-gradient(90deg,rgba(3,19,42,.08),transparent 52%,rgba(2,12,29,.38)),linear-gradient(0deg,rgba(2,12,29,.83),transparent 51%); }
+.tenkaichi-visual-panel::after { position:absolute; z-index:0; right:-9%; bottom:-43%; left:-9%; height:75%; content:""; pointer-events:none; opacity:.42; border:1px solid rgba(149,218,255,.42); background:repeating-linear-gradient(0deg,transparent 0 24px,rgba(126,207,255,.29) 25px,transparent 26px),repeating-linear-gradient(90deg,transparent 0 36px,rgba(126,207,255,.24) 37px,transparent 38px); transform:perspective(200px) rotateX(56deg); transform-origin:center top; mask-image:linear-gradient(transparent,#000 22%); }
+.tenkaichi-stage-index { position:absolute; z-index:4; top:12px; left:13px; display:flex; align-items:center; gap:7px; padding:5px 8px; border:1px solid rgba(225,243,255,.5); background:rgba(4,26,62,.74); color:#e9f6ff; font:600 8px 'DM Mono',monospace; letter-spacing:.5px; }
+.tenkaichi-stage-index b { color:#ffda63; font-size:10px; }
+.tenkaichi-stage-aura { position:absolute; z-index:1; left:48%; bottom:2%; width:min(76%,390px); aspect-ratio:1; border:1px solid rgba(255,215,99,.25); border-radius:50%; background:radial-gradient(ellipse,rgba(255,182,61,.38),rgba(255,121,37,.12) 35%,rgba(42,166,255,.18) 53%,transparent 72%); filter:blur(2px); transform:translateX(-50%); animation:tenkaichi-aura 2.3s ease-in-out infinite alternate; }
+.tenkaichi-stage-image { position:absolute; z-index:2; inset:0; display:block; width:100%; height:100%; min-height:405px; border:0; border-radius:0; background:transparent; text-align:left; }
+.tenkaichi-main-portrait { position:absolute; inset:0; width:100%; height:100%; overflow:visible; background:transparent; }
+.tenkaichi-main-portrait .portrait-fallback { width:74px; height:74px; }
+.tenkaichi-main-portrait img { object-fit:contain; object-position:center bottom; filter:drop-shadow(0 14px 18px rgba(0,0,0,.62)) drop-shadow(0 0 20px rgba(255,204,85,.2)); transition:filter .26s,opacity .26s; }
+#personajes.is-tenkaichi .tenkaichi-main-portrait img { animation:tenkaichi-form-swap .32s ease-out both; }
+.tenkaichi-stage-image:hover .tenkaichi-main-portrait img { filter:drop-shadow(0 13px 19px rgba(0,0,0,.62)) drop-shadow(0 0 25px rgba(255,218,101,.44)); }
+.tenkaichi-stage-image>span { position:absolute; z-index:4; right:10px; bottom:72px; max-width:55%; overflow:hidden; padding:6px 8px; border:1px solid rgba(255,226,125,.45); border-radius:2px; background:rgba(4,22,48,.78); color:#fff0b4; font:600 7px 'DM Mono',monospace; text-overflow:ellipsis; white-space:nowrap; }
+.tenkaichi-nameplate { position:absolute; z-index:4; right:10px; bottom:11px; left:10px; display:grid; gap:4px; padding:9px 11px; border:1px solid rgba(216,238,255,.4); background:linear-gradient(90deg,rgba(4,17,41,.94),rgba(9,31,61,.72)); box-shadow:0 4px 12px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.11); }
+.tenkaichi-nameplate small { overflow:hidden; color:#b6d9f5; font:500 7px 'DM Mono',monospace; letter-spacing:.5px; text-overflow:ellipsis; text-transform:uppercase; white-space:nowrap; }
+.tenkaichi-nameplate strong { overflow:hidden; color:#fff; font:800 clamp(21px,3vw,34px)/1 'Manrope',sans-serif; letter-spacing:-.7px; text-overflow:ellipsis; text-shadow:2px 2px 0 #123c72,0 0 16px rgba(255,197,67,.34); white-space:nowrap; }
+.tenkaichi-nameplate>span { color:#ffda68; font:600 7px 'DM Mono',monospace; letter-spacing:1px; }
+.tenkaichi-target-mark { position:absolute; z-index:4; top:15%; right:12%; display:grid; width:41px; height:41px; place-items:center; border:1px solid rgba(212,240,255,.5); border-radius:50%; color:#d9f2ff; font-size:26px; opacity:.72; text-shadow:0 0 9px #62c5ff; }
+
+.tenkaichi-info-panel { min-width:0; display:flex; flex-direction:column; padding:15px; border:2px solid rgba(73,147,219,.72); background:linear-gradient(150deg,rgba(11,42,79,.97),rgba(7,19,42,.98) 73%,rgba(28,18,29,.98)); box-shadow:inset 0 0 0 1px rgba(255,226,139,.11),0 8px 20px rgba(0,0,0,.25); }
+.tenkaichi-panel-header { display:flex; align-items:center; justify-content:space-between; gap:9px; padding-bottom:9px; border-bottom:1px solid rgba(115,187,239,.35); }
+.tenkaichi-panel-header>div { display:grid; gap:4px; }
+.tenkaichi-panel-header>div>span { color:#ffdc68; font:700 8px 'DM Mono',monospace; letter-spacing:.85px; }
+.tenkaichi-panel-header small { color:#94c6e9; font:500 7px 'DM Mono',monospace; letter-spacing:.65px; }
+.tenkaichi-panel-header>b { display:grid; width:27px; height:25px; place-items:center; border:1px solid rgba(255,224,111,.78); background:linear-gradient(#ffeb7f,#f4a933); color:#102b4c; font:800 11px 'Manrope',sans-serif; }
+.tenkaichi-info-panel>h2 { overflow:hidden; margin:12px 0 4px; color:#fff; font:800 clamp(24px,3vw,35px)/1.05 'Manrope',sans-serif; letter-spacing:-.7px; text-overflow:ellipsis; text-shadow:2px 2px 0 #123b6e; }
+.tenkaichi-character-type { overflow:hidden; margin:0 0 12px; color:#a9cce5; font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
+.tenkaichi-character-type i { color:#ffd45c; font-style:normal; }
+.tenkaichi-stats { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.tenkaichi-stats>div { min-width:0; display:grid; gap:5px; padding:8px; border:1px solid rgba(104,178,230,.25); background:rgba(2,16,35,.58); }
+.tenkaichi-stats>div>span { color:#80b6df; font:600 7px 'DM Mono',monospace; letter-spacing:.6px; }
+.tenkaichi-stats>div>strong { overflow:hidden; color:#fff1b9; font:600 10px 'DM Mono',monospace; text-overflow:ellipsis; white-space:nowrap; }
+.tenkaichi-origin { display:grid; gap:3px; margin-top:7px; padding:8px 9px; border-left:2px solid #ffbd43; background:rgba(255,174,48,.08); }
+.tenkaichi-origin>span { color:#e7bd70; font:600 7px 'DM Mono',monospace; letter-spacing:.6px; }
+.tenkaichi-origin>strong { color:#f3f6fa; font-size:10px; }
+.tenkaichi-description { display:-webkit-box; overflow:auto; max-height:67px; margin:10px 0 0; color:#b6c8d9; font-size:9px; line-height:1.55; -webkit-box-orient:vertical; -webkit-line-clamp:4; }
+.tenkaichi-transformation-zone { margin-top:12px; padding-top:10px; border-top:1px solid rgba(113,187,238,.28); }
+.tenkaichi-transform-picker { display:grid; gap:6px; }
+.tenkaichi-transform-picker>span { color:#ffdc68; font:700 8px 'DM Mono',monospace; letter-spacing:.8px; }
+.tenkaichi-transform-picker select { width:100%; min-height:38px; padding:0 9px; border:1px solid rgba(113,196,255,.58); border-radius:3px; outline:0; background:linear-gradient(100deg,#102e57,#0a1d39); color:#f2f8ff; color-scheme:dark; font:600 10px 'DM Sans',sans-serif; }
+.transformation-picker select { color-scheme:dark; }
+.tenkaichi-transform-picker select option,.transformation-picker select option,.catalog-filters select option { background:#07172d; color:#f5f8ff; }
+.tenkaichi-transform-picker select:focus { border-color:#ffe06b; box-shadow:0 0 0 3px rgba(255,201,72,.17); }
+.tenkaichi-current-form { margin-top:7px; }
+.tenkaichi-current-form>div { display:grid; gap:4px; padding:8px 9px; border:1px solid rgba(255,193,62,.29); background:linear-gradient(110deg,rgba(255,177,50,.12),rgba(11,69,112,.27)); }
+.tenkaichi-current-form>div>span { color:#9ccaea; font:600 7px 'DM Mono',monospace; letter-spacing:.65px; }
+.tenkaichi-current-form strong { color:#fff0b8; font:700 12px 'Manrope',sans-serif; }
+.tenkaichi-current-form small { color:#acc4d7; font-size:8px; }
+.tenkaichi-no-forms { display:flex; align-items:center; gap:8px; min-height:40px; padding:7px 8px; border:1px dashed rgba(116,183,231,.3); background:rgba(4,20,41,.45); }
+.tenkaichi-no-forms>span { color:#ffc954; font-size:18px; }
+.tenkaichi-no-forms>p { margin:0; color:#adc3d5; font-size:9px; line-height:1.4; }
+.tenkaichi-confirm-button,.tenkaichi-back-button { min-height:37px; display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; margin-top:auto; padding:0 10px; border:1px solid rgba(255,220,104,.7); background:linear-gradient(100deg,#ffdc56,#ff9b28 76%,#e85d24); color:#311b0b; font:800 9px 'DM Mono',monospace; letter-spacing:.3px; text-transform:uppercase; cursor:pointer; transition:filter .18s,transform .18s,box-shadow .18s; }
+.tenkaichi-confirm-button { margin-top:12px; }
+.tenkaichi-confirm-button:hover,.tenkaichi-back-button:hover { transform:translateY(-1px); filter:brightness(1.08); box-shadow:0 5px 14px rgba(241,150,38,.25); }
+.tenkaichi-back-button { margin-top:12px; border-color:rgba(117,188,239,.45); background:linear-gradient(100deg,rgba(17,64,111,.95),rgba(8,29,58,.96)); color:#d8edff; }
+.tenkaichi-back-button>span { color:#ffd05a; }
+.tenkaichi-command-bar { min-height:35px; display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; margin-top:9px; padding:6px 9px; border:1px solid rgba(160,70,79,.64); background:linear-gradient(90deg,#4c172b,#21172b 52%,#091c36); color:#e7dce2; font:600 7px 'DM Mono',monospace; letter-spacing:.4px; }
+.tenkaichi-command-bar>span { display:inline-flex; align-items:center; gap:6px; }
+.tenkaichi-command-bar kbd { display:grid; width:18px; height:17px; place-items:center; border:1px solid rgba(255,210,113,.8); border-radius:3px; background:linear-gradient(#ffe27a,#f4a635); color:#321d11; font:800 8px 'Manrope',sans-serif; box-shadow:0 2px 0 #7c3c2f; }
+.tenkaichi-command-bar kbd.is-wide { width:auto; min-width:40px; padding:0 3px; }
+.tenkaichi-player-tag { margin-left:auto; color:#9fcdf0; }
+@keyframes tenkaichi-aura { from { opacity:.68; scale:.94; } to { opacity:1; scale:1.05; } }
+@keyframes tenkaichi-form-swap { from { opacity:.35; } to { opacity:1; } }
+
+@media(max-width:1100px) {
+  .tenkaichi-selection-stage { grid-template-columns:minmax(0,1fr) minmax(270px,.8fr); }
+  .tenkaichi-visual-panel,.tenkaichi-stage-image { min-height:370px; }
+  .tenkaichi-roster-grid .tenkaichi-fighter { flex-basis:65px; }
+}
+@media(max-width:800px) {
+  .tenkaichi-selection-stage { grid-template-columns:1fr; }
+  .tenkaichi-visual-panel,.tenkaichi-stage-image { min-height:390px; }
+  .tenkaichi-info-panel { display:grid; grid-template-columns:1fr 1fr; column-gap:12px; }
+  .tenkaichi-panel-header,.tenkaichi-info-panel>h2,.tenkaichi-character-type,.tenkaichi-description,.tenkaichi-transformation-zone,.tenkaichi-confirm-button,.tenkaichi-back-button { grid-column:1/-1; }
+  .tenkaichi-stats { align-self:start; }
+  .tenkaichi-origin { align-self:start; margin-top:0; }
+}
+@media(max-width:620px) {
+  .character-view-heading { flex-wrap:wrap; }
+  .character-view-heading>div:first-child { width:100%; min-width:0; }
+  .character-heading-tools { display:flex; width:100%; align-items:center; justify-content:flex-end; gap:7px; }
+  .character-heading-tools .view-counter { display:none; }
+  .display-mode-switch button { min-height:29px; padding-inline:8px; font-size:9px; }
+  #personajes.is-tenkaichi .character-heading-tools { width:100%; }
+  .tenkaichi-select-screen { padding:8px; }
+  .tenkaichi-game-header { min-height:32px; padding-inline:7px; font-size:7px; }
+  .tenkaichi-roster-panel { padding:7px 6px 5px; }
+  .tenkaichi-roster-title { font-size:7px; }
+  .tenkaichi-fighter { flex-basis:59px; height:71px; }
+  .tenkaichi-portrait { height:48px; }
+  .tenkaichi-roster-name { font-size:6px; }
+  .tenkaichi-visual-panel,.tenkaichi-stage-image { min-height:320px; }
+  .tenkaichi-stage-image>span { bottom:74px; font-size:6px; }
+  .tenkaichi-target-mark { top:17%; right:8%; width:31px; height:31px; font-size:20px; }
+  .tenkaichi-nameplate { right:7px; bottom:7px; left:7px; padding:7px 8px; }
+  .tenkaichi-nameplate strong { font-size:25px; }
+  .tenkaichi-info-panel { display:flex; padding:11px; }
+  .tenkaichi-info-panel>h2 { font-size:27px; }
+  .tenkaichi-stats { grid-template-columns:1fr 1fr; }
+  .tenkaichi-command-bar { gap:6px 10px; padding:6px; font-size:6px; }
+  .tenkaichi-player-tag { margin-left:0; }
+}
+@media(max-width:380px) {
+  .tenkaichi-game-header span:last-child { max-width:110px; }
+  .tenkaichi-roster-title>span { max-width:140px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .tenkaichi-fighter { flex-basis:55px; }
+  .tenkaichi-visual-panel,.tenkaichi-stage-image { min-height:280px; }
+  .tenkaichi-nameplate strong { font-size:22px; }
+  .tenkaichi-stats { grid-template-columns:1fr; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .tenkaichi-stage-aura,.tenkaichi-fighter,#personajes.is-tenkaichi .tenkaichi-main-portrait img { animation:none!important; transition:none!important; }
+}

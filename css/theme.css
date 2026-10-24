@@ -1,0 +1,109 @@
+/* Colores y elementos compartidos del portal */
+/* Identidad visual Dragon Ball compartida por todas las vistas */
+:root {
+  --bg:#06111f;
+  --panel:rgba(9,29,50,.94);
+  --panel-soft:#0b2035;
+  --line:rgba(132,194,237,.17);
+  --muted:#a5b6c5;
+  --lime:#ffc642;
+  --mint:#ff8b39;
+  --blue:#62baf6;
+  --purple:#c99bf4;
+}
+
+body {
+  min-width:0;
+  width:100%;
+  background:
+    radial-gradient(ellipse at 9% 8%,rgba(16,100,187,.22),transparent 34%),
+    radial-gradient(ellipse at 93% 28%,rgba(238,122,30,.12),transparent 31%),
+    radial-gradient(ellipse at 48% 80%,rgba(13,64,106,.17),transparent 42%),
+    #06111f;
+}
+.ambient-a { background:#167cd0; opacity:.18; }
+.ambient-b { background:#f28b26; opacity:.1; }
+.app-shell { width:min(1600px,calc(100% - 56px)); }
+.topbar {
+  position:relative;
+  left:50%;
+  width:100vw;
+  margin-left:-50vw;
+  padding-inline:max(28px,calc((100vw - 1600px) / 2));
+  border-bottom:1px solid rgba(255,193,67,.32);
+  background:linear-gradient(90deg,rgba(3,17,34,.96),rgba(6,31,58,.9),rgba(3,17,34,.96));
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+.brand-icon {
+  border-color:rgba(255,190,58,.65);
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff2a3,#ffb52b 54%,#e85e14);
+  color:#8e290c;
+  box-shadow:0 0 19px rgba(255,169,44,.2),inset 0 0 9px rgba(255,255,255,.48);
+}
+.brand-icon span { color:#84270e; }
+.brand strong { font-size:19px; letter-spacing:-.6px; }
+.brand small { color:#b2c4d2; font-size:10px; }
+.top-nav { gap:12px; }
+.top-nav .nav-link {
+  padding:10px 12px;
+  border:1px solid transparent;
+  border-radius:8px;
+  color:#d1deea;
+  font-size:15px;
+  font-weight:600;
+  transition:background .2s,border-color .2s,color .2s,transform .2s;
+}
+.top-nav .nav-link::after { display:none; }
+.top-nav .nav-link:hover { color:#fff; background:rgba(93,168,222,.13); transform:translateY(-1px); }
+.top-nav .nav-link.is-active {
+  border-color:rgba(255,191,58,.35);
+  background:linear-gradient(135deg,rgba(255,187,47,.16),rgba(240,117,31,.08));
+  color:#ffd268;
+  box-shadow:inset 0 0 16px rgba(255,175,41,.045);
+}
+.top-nav .nav-link.is-active::after { display:none; }
+main { padding-bottom:32px; }
+.page-view { animation:view-enter .42s cubic-bezier(.2,.7,.2,1); }
+.view-heading {
+  position:relative;
+  margin:46px 0 23px;
+  padding:6px 0 18px 16px;
+  border-bottom:1px solid rgba(112,177,224,.2);
+}
+.view-heading::before {
+  position:absolute;
+  top:4px;
+  bottom:18px;
+  left:0;
+  width:4px;
+  content:"";
+  border-radius:5px;
+  background:linear-gradient(#ffe07a,#f28a25);
+  box-shadow:0 0 16px rgba(255,179,42,.38);
+}
+.view-kicker { margin-bottom:10px; color:#ffc854; font-size:12px; letter-spacing:1.3px; }
+.view-heading h1 { color:#f7fbff; font-size:clamp(38px,4vw,54px); letter-spacing:-1.8px; text-shadow:0 5px 22px rgba(31,112,187,.16); }
+.view-heading h2 { color:#f6f7ee; font-size:28px; }
+.view-heading>div>p:last-child { max-width:760px; margin-top:11px; color:#b2c4d2; font-size:15px; line-height:1.7; }
+.view-counter { padding-bottom:6px; color:#a8c1d5; font-size:10px; }
+.view-counter i { background:#ffc64a; box-shadow:0 0 0 4px rgba(255,198,74,.12),0 0 13px rgba(255,198,74,.7); }
+.text-link { color:#ffd06a; font-size:13px; font-weight:600; }
+.text-link:hover { color:#fff0b0; }
+.overview-card {
+  border-color:rgba(105,177,229,.25);
+  border-radius:13px;
+  background:linear-gradient(135deg,rgba(11,42,72,.92),rgba(8,23,39,.94));
+  box-shadow:0 10px 28px rgba(0,0,0,.15),inset 0 1px rgba(255,255,255,.04);
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+}
+.overview-card:hover { transform:translateY(-4px); border-color:rgba(255,194,68,.43); box-shadow:0 15px 32px rgba(0,0,0,.22),0 0 22px rgba(255,170,39,.06); }
+.overview-icon { border-color:rgba(255,196,71,.3); background:rgba(255,184,48,.12); color:#ffd267; }
+.overview-card small { color:#9cb7ca; font-size:10px; }
+.overview-card strong { color:#f7f9f5; font-size:19px; }
+.overview-card span:last-child { color:#b0bdc5; font-size:12px; }
+.home-featured-section { padding-top:2px; }
+.home-featured-section .compact-heading { border:0; padding:0; }
+.home-featured-section .compact-heading::before { display:none; }
+.home-featured-section .character-card { border-color:rgba(255,191,64,.24); }
+.home-endpoint { min-height:50px; border-color:rgba(91,176,230,.26); background:linear-gradient(90deg,rgba(11,48,78,.76),rgba(9,25,39,.92)); }

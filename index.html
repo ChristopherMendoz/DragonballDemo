@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#01080A" />
+    <meta name="description" content="Explora personajes de Dragon Ball y aprende Fetch API en un laboratorio interactivo." />
+    <title>Fetch / Dragon Ball — Guía interactiva</title>
+    <link rel="preconnect" href="https://dragonball-api.com" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/dragonball.css" />
+    <link rel="stylesheet" href="css/views.css" />
+    <link rel="stylesheet" href="css/scene.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+    <link rel="stylesheet" href="css/tenkaichi.css" />
+    <link rel="stylesheet" href="css/gallery.css" />
+    <link rel="stylesheet" href="css/planets.css" />
+    <link rel="stylesheet" href="css/lab-guide.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/lightbox.css" />
+    <link rel="stylesheet" href="css/portal-redesign.css" />
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#inicio" data-view-link="inicio" aria-label="Dragon Ball Z, inicio">
+          <span class="brand-icon" aria-hidden="true">✦</span>
+          <span><strong>DRAGON BALL <b>Z</b></strong><small>UNIVERSO · API INTERACTIVA</small></span>
+        </a>
+        <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>
+        <nav id="main-navigation" class="top-nav" aria-label="Navegación principal">
+          <a href="#inicio" class="nav-link is-active" data-view-link="inicio" aria-current="page">Inicio</a>
+          <a href="#personajes" class="nav-link" data-view-link="personajes">Personajes</a>
+          <a href="#planetas" class="nav-link" data-view-link="planetas">Planetas</a>
+          <a href="#galeria" class="nav-link" data-view-link="galeria">Galería</a>
+          <a href="#laboratorio" class="nav-link" data-view-link="laboratorio">Laboratorio</a>
+          <a href="#guia" class="nav-link" data-view-link="guia">Guía Fetch</a>
+        </nav>
+      </header>
+
+      <main id="app-main">
+        <section id="inicio" class="page-view is-active" data-page-view="inicio" aria-labelledby="home-title">
+          <div class="home-hero">
+            <div class="hero-landscape" aria-hidden="true"><span class="landscape-sun"></span><span class="scene-cloud cloud-left"></span><span class="scene-cloud cloud-right"></span><span class="scene-mountain mountain-left"></span><span class="scene-mountain mountain-center"></span><span class="scene-water"></span><span class="scene-island"></span><span class="scene-house"><i></i><b></b><em>KAME HOUSE</em></span><span class="scene-palm palm-one"></span><span class="scene-palm palm-two"></span><span class="scene-starball ball-one">✦ ✦ ✦</span><span class="scene-starball ball-two">✦</span></div>
+            <div class="home-copy">
+              <p class="eyebrow"><span class="pulse-dot"></span> DISEÑO DE SISTEMAS DE INTERNET <span class="eyebrow-divider">/</span> SEMANA 11</p>
+              <h1 id="home-title">El universo<br />en una <span>petición.</span></h1>
+              <p class="hero-description">Explora los personajes de Dragon Ball y descubre cómo los datos viajan desde una API pública hasta tu pantalla.</p>
+              <div class="home-actions"><button type="button" class="primary-action" data-go-view="personajes">Explorar personajes <span aria-hidden="true">↗</span></button><button type="button" class="secondary-action" data-go-view="planetas"><span aria-hidden="true">◉</span> Descubrir planetas</button><button type="button" class="secondary-action" data-go-view="laboratorio"><span aria-hidden="true">{ }</span> Abrir laboratorio</button></div>
+            </div>
+            <div class="hero-figure" id="hero-figure"><div class="hero-aura" aria-hidden="true"></div><div id="hero-character-image" class="hero-character-image"></div><span class="hero-cloud" aria-hidden="true">☁</span></div>
+            <div class="hero-orb" aria-label="Esfera de energía decorativa"><span class="orb-core"></span><span class="orb-ring orb-ring-one"></span><span class="orb-ring orb-ring-two"></span><span class="orb-star star-one">✦</span><span class="orb-star star-two">✦</span><span class="orb-number">API · 01</span></div>
+          </div>
+
+          <div class="home-overview">
+            <article class="overview-card"><span class="overview-icon">✦</span><div><small>PERSONAJES EN LA API</small><strong id="home-total">—</strong><span id="home-total-note">cargando catálogo</span></div></article>
+            <article class="overview-card"><span class="overview-icon orange-icon">⌕</span><div><small>UNIVERSO DISPONIBLE</small><strong>Héroes y planetas</strong><span>personajes, mundos y datos</span></div></article>
+            <article class="overview-card"><span class="overview-icon blue-icon">↗</span><div><small>ÚLTIMA RESPUESTA</small><strong id="home-status">Conectando</strong><span id="home-latency">Esperando petición a la API</span></div></article>
+          </div>
+
+          <section class="home-featured-section" aria-labelledby="featured-title">
+            <div class="view-heading compact-heading"><div><p class="view-kicker">UN PRIMER VISTAZO</p><h2 id="featured-title">Personajes destacados</h2></div><button type="button" class="text-link" data-go-view="personajes">Ver catálogo completo <span aria-hidden="true">→</span></button></div>
+            <div id="home-featured" class="featured-grid"><div class="featured-loading"><span class="loading-orb">✦</span> Cargando personajes del universo…</div></div>
+          </section>
+
+          <div class="home-endpoint"><div><span class="endpoint-method">GET</span><code>https://dragonball-api.com/api/characters</code></div><span class="endpoint-live"><i></i> API PÚBLICA</span><a href="https://web.dragonball-api.com/documentation" target="_blank" rel="noreferrer">Documentación ↗</a></div>
+        </section>
+
+        <section id="galeria" class="page-view" data-page-view="galeria" aria-labelledby="gallery-title" hidden>
+          <div class="view-heading"><div><p class="view-kicker">RETRATOS DEL UNIVERSO</p><h1 id="gallery-title">Galería de guerreros</h1><p>Haz clic en un retrato para verlo de cerca. Mueve el cursor y explora el efecto de profundidad.</p></div><span class="view-counter"><i></i> IMÁGENES API</span></div>
+          <div class="gallery-toolbar"><span id="gallery-count">Preparando galería…</span><button type="button" class="text-link" data-go-view="personajes">Buscar un personaje <span aria-hidden="true">→</span></button></div>
+          <div id="gallery-grid" class="gallery-grid"><div class="featured-loading"><span class="loading-orb">✦</span> Cargando retratos…</div></div>
+        </section>
+
+        <section id="planetas" class="page-view" data-page-view="planetas" aria-labelledby="planets-title" hidden>
+          <div class="view-heading"><div><p class="view-kicker">CARTOGRAFÍA DEL UNIVERSO</p><h1 id="planets-title">Mundos de Dragon Ball</h1><p id="planets-intro">Explora sus paisajes, conoce su historia y descubre quiénes los habitan.</p></div><span class="view-counter"><i></i> PLANETAS API</span></div>
+          <form id="planet-search-form" class="planet-filters">
+            <label class="planet-search"><span>BUSCAR PLANETA</span><div><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="planet-name" type="search" placeholder="Ej. Tierra, Namek, Vegeta…" autocomplete="off" /></div></label>
+            <label class="planet-state-filter"><span>ESTADO DEL PLANETA</span><select id="planet-state"><option value="">Cualquier estado</option><option value="false">No destruido</option><option value="true">Destruido</option></select></label>
+            <button type="submit" class="planet-search-submit">Buscar mundos <span aria-hidden="true">↗</span></button>
+          </form>
+          <div id="planet-toolbar" class="planet-toolbar"><div><strong id="planet-count">Cargando planetas…</strong><span id="planet-description">Un atlas de mundos del universo Dragon Ball</span></div><span id="planet-page">PÁGINA 1</span></div>
+          <div id="planet-content" class="planet-content"><div id="planet-grid" class="planet-grid"><div class="featured-loading"><span class="loading-orb">✦</span> Trazando la ruta entre planetas…</div></div></div>
+          <div id="planet-pagination" class="pagination planet-pagination" hidden><button id="planet-prev" type="button" aria-label="Página anterior">←</button><span id="planet-page-label">1 / 1</span><button id="planet-next" type="button" aria-label="Página siguiente">→</button></div>
+        </section>
+
+        <section id="personajes" class="page-view" data-page-view="personajes" aria-labelledby="characters-title" hidden>
+          <div class="view-heading character-view-heading"><div><p id="characters-kicker" class="view-kicker">CATÁLOGO INTERACTIVO</p><h1 id="characters-title" tabindex="-1">Explora los personajes</h1><p id="characters-description">Busca por nombre o combina filtros para encontrar a tu favorito.</p></div><div class="character-heading-tools"><span class="view-counter"><i></i> <span id="characters-data-label">DATOS EN VIVO</span></span><div class="display-mode-switch" role="group" aria-label="Modo de visualización de personajes"><button id="mode-catalog" type="button" aria-pressed="true">Catálogo</button><button id="mode-tenkaichi" type="button" aria-pressed="false"><span aria-hidden="true">✦</span> Tenkaichi</button></div></div></div>
+          <form id="search-form" class="catalog-filters">
+            <label class="catalog-search"><span>BUSCAR PERSONAJE</span><div><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.7"/><path d="m16 16 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><input id="character-search" type="search" placeholder="Ej. Goku, Vegeta, Bulma…" autocomplete="off" /></div></label>
+            <label class="filter-control"><span>RAZA</span><select id="race-filter"><option value="">Todas las razas</option><option value="Saiyan">Saiyajin</option><option value="Human">Humano</option><option value="Namekian">Namekiano</option><option value="Majin">Majin</option><option value="Frieza Race">Raza de Freezer</option><option value="Android">Androide</option><option value="Jiren Race">Raza de Jiren</option><option value="God">Dios</option><option value="Angel">Ángel</option><option value="Evil">Maligno</option><option value="Nucleico">Nucleico</option><option value="Nucleico benigno">Nucleico benigno</option><option value="Unknown">Desconocida</option></select></label>
+            <label class="filter-control affiliation-filter"><span>AFILIACIÓN</span><select id="affiliation-filter"><option value="">Todas las afiliaciones</option><option value="Z Fighter">Guerrero Z</option><option value="Army of Frieza">Ejército de Freezer</option><option value="Freelancer">Independiente</option><option value="Red Ribbon Army">Ejército Red Ribbon</option><option value="Namekian Warrior">Guerrero namekiano</option><option value="Pride Troopers">Tropas del Orgullo</option><option value="Assistant of Vermoud">Asistente de Vermoud</option><option value="God Assistant of Beerus">Asistente divino de Beerus</option><option value="Villain">Villano</option><option value="Other">Otra</option></select></label>
+            <button type="submit" class="filter-submit">Buscar <span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="catalog-toolbar"><div><strong id="catalog-count">Cargando catálogo…</strong><span id="catalog-description">Personajes de Dragon Ball</span></div><span id="catalog-page" class="catalog-page">PÁGINA 1</span></div>
+          <div id="character-content" class="character-content catalog-character-content"><div class="character-placeholder is-loading"><span class="placeholder-orb">✦</span><strong>Buscando en el universo…</strong><small>La respuesta de la API está en camino.</small></div></div>
+          <div id="pagination" class="pagination" hidden><button id="prev-page" type="button" aria-label="Página anterior">←</button><span id="page-label">1 / 1</span><button id="next-page" type="button" aria-label="Página siguiente">→</button></div>
+        </section>
+
+        <section id="laboratorio" class="page-view" data-page-view="laboratorio" aria-labelledby="lab-title" hidden>
+          <div class="view-heading"><div><p class="view-kicker">PRUEBA LA PETICIÓN</p><h1 id="lab-title">Laboratorio Fetch</h1><p>Compara dos formas de hacer la misma solicitud y examina la respuesta.</p></div><span class="view-counter"><i></i> GET · JSON</span></div>
+          <div class="lab-grid">
+            <article class="panel request-panel">
+              <div class="panel-top"><div class="panel-title"><span class="panel-index">01</span><div><strong>Modo de ejecución</strong><small>ELIGE CÓMO CONSUMIR LA API</small></div></div><span class="panel-kebab" aria-hidden="true">•••</span></div>
+              <div class="request-controls lab-controls">
+                <div class="method-switch" role="group" aria-label="Método de Fetch">
+                  <button class="method-tab is-active" type="button" data-method="async" aria-pressed="true"><span class="method-symbol">{ }</span><span><strong>async / await</strong><small>SINTAXIS MODERNA</small></span><span class="method-check">●</span></button>
+                  <button class="method-tab" type="button" data-method="promise" aria-pressed="false"><span class="method-symbol">.then</span><span><strong>Promesas</strong><small>.then() / .catch()</small></span><span class="method-check">●</span></button>
+                </div>
+                <div class="lab-request-url"><span class="endpoint-method">GET</span><code id="request-url">https://dragonball-api.com/api/characters</code></div>
+                <button id="run-request" class="run-button" type="button"><span class="run-play" aria-hidden="true">▶</span><span>Repetir última petición</span><span class="run-arrow" aria-hidden="true">↗</span></button>
+                <p class="lab-hint">La petición usa los filtros y la página que elegiste en el catálogo.</p>
+              </div>
+              <div class="metrics-row" aria-label="Métricas de la petición">
+                <div class="metric"><span>ESTADO HTTP</span><strong id="metric-status" class="status-waiting">— — —</strong><small id="metric-status-label">esperando petición</small></div>
+                <div class="metric"><span>LATENCIA</span><strong id="metric-latency">— <small>ms</small></strong><small>tiempo de respuesta</small></div>
+                <div class="metric"><span>TIPO DE CONTENIDO</span><strong id="metric-type" class="metric-type">—</strong><small>formato recibido</small></div>
+              </div>
+            </article>
+
+            <article class="panel inspector-panel">
+              <div class="panel-top inspector-top"><div class="panel-title"><span class="panel-index">02</span><div><strong>Inspector de respuesta</strong><small>JSON Y CÓDIGO EJECUTADO</small></div></div><span id="response-indicator" class="response-indicator"><i></i> EN ESPERA</span></div>
+              <div class="inspector-tabs" role="tablist" aria-label="Visor de respuesta"><button type="button" class="inspector-tab is-active" data-view="json" role="tab" aria-selected="true">JSON bruto</button><button type="button" class="inspector-tab" data-view="code" role="tab" aria-selected="false">Código</button></div>
+              <div id="json-view" class="inspector-view code-view" role="tabpanel"><div class="code-toolbar"><span><i></i><i></i><i></i></span><span>response.json</span><button id="copy-json" type="button">Copiar JSON</button></div><pre><code id="json-output">// La respuesta del servidor aparecerá aquí…</code></pre></div>
+              <div id="code-view" class="inspector-view code-view" role="tabpanel" hidden><div class="code-toolbar"><span><i></i><i></i><i></i></span><span id="code-filename">fetch-async.js</span><button id="copy-code" type="button">Copiar código</button></div><pre><code id="code-output">// Selecciona un método para ver el código.</code></pre></div>
+            </article>
+          </div>
+          <div class="lab-explainer"><span class="explainer-mark">i</span><p><strong>Tip:</strong> haz una búsqueda en <button type="button" data-go-view="personajes">Personajes</button> y vuelve aquí para revisar esa misma petición, sus métricas y el JSON recibido.</p></div>
+        </section>
+
+        <section id="guia" class="page-view" data-page-view="guia" aria-labelledby="guide-title" hidden>
+          <div class="view-heading"><div><p class="view-kicker">DEL REQUEST AL RENDER</p><h1 id="guide-title">Cómo funciona Fetch</h1><p>Cuatro pasos, desde que solicitas los personajes hasta que aparecen en pantalla.</p></div><span class="guide-asterisk" aria-hidden="true">✳</span></div>
+          <div class="flow-grid">
+            <article class="flow-card"><span class="flow-number">01</span><span class="flow-icon request-icon" aria-hidden="true">↗</span><h3>Hacer la petición</h3><p><code>fetch(url)</code> inicia un <strong>GET</strong> a la API y devuelve una promesa.</p><span class="flow-connector" aria-hidden="true">→</span></article>
+            <article class="flow-card"><span class="flow-number">02</span><span class="flow-icon response-icon" aria-hidden="true">⇣</span><h3>Revisar la respuesta</h3><p>Se comprueba <code>response.ok</code> y el estado HTTP antes de procesar los datos.</p><span class="flow-connector" aria-hidden="true">→</span></article>
+            <article class="flow-card"><span class="flow-number">03</span><span class="flow-icon json-icon" aria-hidden="true">{ }</span><h3>Convertir a JSON</h3><p><code>response.json()</code> transforma la respuesta en un objeto de JavaScript.</p><span class="flow-connector" aria-hidden="true">→</span></article>
+            <article class="flow-card"><span class="flow-number">04</span><span class="flow-icon render-icon" aria-hidden="true">▤</span><h3>Mostrar los datos</h3><p>Leemos <code>name</code>, <code>race</code> e <code>image</code> para construir cada tarjeta.</p></article>
+          </div>
+          <div class="compare-grid">
+            <article class="compare-card"><div class="compare-heading"><span class="compare-badge">A</span><div><h2>Con <code>async / await</code></h2><p>Se lee como una secuencia de pasos.</p></div><span class="compare-tag">MODERNO</span></div><pre><code><span class="syntax-purple">async function</span> obtenerPersonajes() {
+  <span class="syntax-purple">const</span> respuesta = <span class="syntax-purple">await</span> fetch(url);
+  <span class="syntax-purple">if</span> (!respuesta.ok) <span class="syntax-purple">throw new</span> Error(respuesta.status);
+  <span class="syntax-purple">const</span> datos = <span class="syntax-purple">await</span> respuesta.json();
+  pintarPersonajes(datos.items);
+}</code></pre></article>
+            <article class="compare-card"><div class="compare-heading"><span class="compare-badge promise-badge">B</span><div><h2>Con promesas</h2><p>Encadena el éxito y captura errores.</p></div><span class="compare-tag">.THEN / .CATCH</span></div><pre><code>fetch(url)
+  .<span class="syntax-blue">then</span>(respuesta =&gt; {
+    <span class="syntax-purple">if</span> (!respuesta.ok) <span class="syntax-purple">throw new</span> Error(respuesta.status);
+    <span class="syntax-purple">return</span> respuesta.json();
+  })
+  .<span class="syntax-blue">then</span>(datos =&gt; pintarPersonajes(datos.items))
+  .<span class="syntax-blue">catch</span>(error =&gt; mostrarError(error));</code></pre></article>
+          </div>
+          <div class="guide-note"><span>01 / RESPUESTA</span><p>Una petición exitosa devuelve información JSON. En esta API, la lista viene en <code>items</code> y cada personaje contiene campos como nombre, raza, imagen y afiliación.</p><a href="https://web.dragonball-api.com/documentation" target="_blank" rel="noreferrer">Ver documentación de Dragon Ball API ↗</a></div>
+        </section>
+      </main>
+
+      <dialog id="character-lightbox" class="character-lightbox" aria-labelledby="lightbox-title">
+        <div class="lightbox-shell">
+          <button id="close-lightbox" class="lightbox-close" type="button" aria-label="Cerrar imagen ampliada">×</button>
+          <div class="lightbox-scene" id="lightbox-scene">
+            <button id="lightbox-zoom" class="lightbox-zoom-button" type="button" aria-pressed="false" aria-label="Ampliar retrato">＋ <span>Ampliar</span></button>
+            <span class="lightbox-orbit orbit-a"></span><span class="lightbox-orbit orbit-b"></span><span class="lightbox-star star-a">✦</span><span class="lightbox-star star-b">✧</span>
+            <div class="lightbox-3d-card" id="lightbox-3d-card"><span class="lightbox-card-glow"></span><button id="lightbox-image" class="lightbox-image" type="button" aria-label="Haz clic en una zona del personaje para ampliarla"></button><span class="lightbox-card-mark">DRAGON BALL · ARCHIVO</span></div>
+          </div>
+          <div class="lightbox-info"><span id="lightbox-kicker" class="lightbox-kicker">PERSONAJE</span><h2 id="lightbox-title">Guerrero Z</h2><p id="lightbox-description">Retrato del catálogo Dragon Ball API.</p><div class="lightbox-tags"><span id="lightbox-race">—</span><span id="lightbox-power">KI —</span></div><button id="lightbox-profile" class="lightbox-profile-button" type="button">Ver ficha completa <span aria-hidden="true">↗</span></button><small class="lightbox-hint">Mueve el cursor para girar · haz clic en una zona para ampliarla</small></div>
+        </div>
+      </dialog>
+
+      <p id="live-status" class="sr-only" aria-live="polite"></p>
+      <footer class="footer"><a class="footer-brand" href="#inicio" data-view-link="inicio">DRAGON BALL <span>Z</span></a><span>Un universo de datos, energía y aventuras.</span><span>Diseño de Sistemas de Internet · 2026</span></footer>
+    </div>
+  </body>
+</html>
